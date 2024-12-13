@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('./assets/fonts/playfair/PlayfairDisplay-VariableFont_wght.ttf')
+    format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Playfair Display Italic';
+  src: url('./assets/fonts/playfair/PlayfairDisplay-Italic-VariableFont_wght.ttf')
+    format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+:root {
+  box-sizing: border-box;
+  overflow-x: hidden;
+  background-color: beige;
+  font-family: 'Playfair Display', 'Playfair Display Italic', sans-serif;
+}
