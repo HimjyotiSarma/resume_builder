@@ -1,9 +1,9 @@
 main {
   display: flex;
-  margin: 0;
-  padding: 5%;
+  margin: 2%;
+  justify-content: space-around;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
   main {
     display: block;
   }

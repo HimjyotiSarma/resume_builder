@@ -1,0 +1,6 @@
+@function socialPadding($classname: null) {
+  @if ($classname == 'address') {
+    @return 0;
+  }
+  @return 10px;
+}

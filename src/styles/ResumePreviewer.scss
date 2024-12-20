@@ -1,3 +1,80 @@
+@use './utils/functions.scss' as func;
+
+$socialClass: 'email', 'phone', 'address';
+
 .resumePreviewBox {
-  flex: 1 1 75%;
+  flex: 1 1 70%;
+  padding: 2% 5%;
+}
+.resume_container {
+  background-color: white;
+  height: 29.7cm;
+  width: 21cm;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  .personal_details_area {
+    height: 17.5%;
+    max-height: 300px;
+    width: 100%;
+    background-color: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .socials {
+      display: flex;
+      justify-content: space-around;
+      align-items: start;
+      width: 75%;
+      max-width: 500px;
+      // flex: 1 1 50px;
+      height: 40%;
+      max-height: 200px;
+
+      @each $social in $socialClass {
+        .#{$social} {
+          font-size: 1.15em;
+          padding-right: func.socialPadding($social);
+        }
+      }
+
+      // > * {
+      //   font-size: 1.15em;
+      //   padding-right: func.socialPadding();
+      // }
+      // .address {
+      //   padding-right: func.socialPadding();
+      // }
+    }
+
+    .name_area {
+      font-size: 4rem;
+      height: 60%;
+      max-height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: end;
+    }
+  }
+
+  .resume_details {
+    padding: 1cm;
+
+    .resume_title_box {
+      background-color: rgb(221, 236, 236);
+      width: 100%;
+      height: 7.5%;
+      max-height: 75px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      h1 {
+        font-size: 2rem;
+        letter-spacing: 1px;
+      }
+    }
+  }
 }

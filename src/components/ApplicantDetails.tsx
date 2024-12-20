@@ -1,64 +1,94 @@
 import '../styles/ApplicantDetail.scss'
-import { ApplicantDetailsProps, PersonalDetail } from '../utils/types'
+import {
+  ApplicantDetailsProps,
+  EducationBackground,
+  ExperienceBackground,
+} from '../utils/types'
+import EducationDetailComponent from './EducationDetailComponent'
+import ExperienceBackgroundComponent from './ExperienceBackgroundComponent'
+import PersonalDetailComponent from './PersonalDetailComponent'
 
 const ApplicantDetails = ({
   personalDetails,
   updatePersonalDetails,
+  educationDetails,
+  updateEducationDetails,
+  experienceDetails,
+  updateExperienceDetails,
 }: ApplicantDetailsProps) => {
-  function handleFieldInputChange(
-    e: React.ChangeEvent<HTMLInputElement>,
-    fieldName: keyof PersonalDetail
-  ) {
-    e.preventDefault()
-    const newPersonalDetail: PersonalDetail = {
-      ...personalDetails,
-      [fieldName]: e.target.value,
-    }
-    updatePersonalDetails(newPersonalDetail)
+  const handleEducationInput = (updateEducation: EducationBackground) => {
+    const updateEducationData: EducationBackground[] = educationDetails.map(
+      (educationData) => {
+        return updateEducation.id == educationData.id
+          ? updateEducation
+          : educationData
+      }
+    )
+    updateEducationDetails(updateEducationData)
   }
 
+  const addNewEducation = () => {
+    console.log('Add New Education')
+  }
+
+  const addNewExperience = () => {
+    console.log('Add New Experience')
+  }
+
+  const handleExperienceInput = (updateExperience: ExperienceBackground) => {
+    const updateExperienceData: ExperienceBackground[] = experienceDetails.map(
+      (experienceData) => {
+        return updateExperience.id == experienceData.id
+          ? updateExperience
+          : experienceData
+      }
+    )
+    updateExperienceDetails(updateExperienceData)
+  }
   return (
     <div className="applicant_detail">
-      <div className="personal_detail_form detailArea">
-        <div className="form_box">
-          <label htmlFor="applicant_name">Name</label>
-          <input
-            type="text"
-            name="applicant_name"
-            id="applicant_name"
-            value={personalDetails.fullName}
-            onChange={(e) => handleFieldInputChange(e, 'fullName')}
+      <div className="info_box">
+        <h1>Personal Details</h1>
+        <div className="general_details">
+          <PersonalDetailComponent
+            personalDetails={personalDetails}
+            updatePersonalDetails={updatePersonalDetails}
           />
         </div>
-        <div className="form_box">
-          <label htmlFor="applicant_email">Email ID</label>
-          <input
-            type="text"
-            name="applicant_email"
-            id="applicant_email"
-            value={personalDetails.email}
-            onChange={(e) => handleFieldInputChange(e, 'email')}
-          />
+      </div>
+
+      <div className="info_box">
+        <h1>Education</h1>
+        <div className="education_details">
+          {educationDetails.map(
+            (educationDetail: EducationBackground, index: number) => (
+              <div key={educationDetail.id}>
+                <h3>Education-{index + 1}</h3>
+                <EducationDetailComponent
+                  educationDetail={educationDetail}
+                  updateEducationDetail={handleEducationInput}
+                />
+              </div>
+            )
+          )}
+          <button onClick={addNewEducation}>+</button>
         </div>
-        <div className="form_box">
-          <label htmlFor="applicant_Phone">Phone</label>
-          <input
-            type="text"
-            name="applicant_Phone"
-            id="applicant_Phone"
-            value={personalDetails.phone}
-            onChange={(e) => handleFieldInputChange(e, 'phone')}
-          />
-        </div>
-        <div className="form_box">
-          <label htmlFor="applicant_Address">Phone</label>
-          <input
-            type="text"
-            name="applicant_Address"
-            id="applicant_Address"
-            value={personalDetails.address}
-            onChange={(e) => handleFieldInputChange(e, 'address')}
-          />
+      </div>
+      <div className="info_box">
+        <h1>Experience</h1>
+        <div className="experience_details">
+          {experienceDetails.map(
+            (experienceDetail: ExperienceBackground, index: number) => (
+              <div key={experienceDetail.id}>
+                <h3>Experience-{index + 1}</h3>
+                <ExperienceBackgroundComponent
+                  experienceDetail={experienceDetail}
+                  updateExperienceDetail={handleExperienceInput}
+                />
+              </div>
+            )
+          )}
+          <button onClick={addNewExperience}>+</button>
         </div>
       </div>
     </div>

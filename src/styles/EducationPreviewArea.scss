@@ -1,0 +1,32 @@
+.educationPreviewArea {
+  display: grid;
+  grid-template-columns: minmax(50px, 1fr) 2fr;
+  justify-content: center;
+  align-items: start;
+  margin-bottom: 1rem;
+  padding: 0.25rem 0;
+}
+.education_right_area {
+  h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    padding-bottom: 0.5rem;
+  }
+  .education_degree {
+    font-family: 'Playfair Display Italic';
+  }
+}
+.education_left_area {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  .education_date {
+    font-weight: 700;
+    font-size: 1.15rem;
+  }
+  .education_location {
+    font-family: 'Playfair Display Italic';
+    font-style: italic;
+  }
+}
