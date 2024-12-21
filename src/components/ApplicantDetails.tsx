@@ -1,4 +1,6 @@
+import { v4 as uuidv4 } from 'uuid'
 import '../styles/ApplicantDetail.scss'
+import { RiDeleteBin5Fill } from 'react-icons/ri'
 import {
   ApplicantDetailsProps,
   EducationBackground,
@@ -27,12 +29,42 @@ const ApplicantDetails = ({
     updateEducationDetails(updateEducationData)
   }
 
-  const addNewEducation = () => {
-    console.log('Add New Education')
+  function addNewEducation() {
+    const newEduccation: EducationBackground = {
+      id: uuidv4(),
+      degree: '',
+      institute: '',
+      date_of_passing: '',
+      location: '',
+    }
+    updateEducationDetails([...educationDetails, newEduccation])
   }
 
   const addNewExperience = () => {
-    console.log('Add New Experience')
+    const newExperiece: ExperienceBackground = {
+      id: uuidv4(),
+      job_title: '',
+      company: '',
+      startDate: '',
+      endDate: '',
+      location: '',
+      description: '',
+    }
+    updateExperienceDetails([...experienceDetails, newExperiece])
+  }
+
+  function deleteEducation(id: string) {
+    const newEducationList: EducationBackground[] = educationDetails.filter(
+      (educationDetail: EducationBackground) => educationDetail.id != id
+    )
+    updateEducationDetails(newEducationList)
+  }
+
+  function deleteExperience(id: string) {
+    const newExperienceList: ExperienceBackground[] = experienceDetails.filter(
+      (experience: ExperienceBackground) => experience.id != id
+    )
+    updateExperienceDetails(newExperienceList)
   }
 
   const handleExperienceInput = (updateExperience: ExperienceBackground) => {
@@ -63,7 +95,12 @@ const ApplicantDetails = ({
           {educationDetails.map(
             (educationDetail: EducationBackground, index: number) => (
               <div key={educationDetail.id}>
-                <h3>Education-{index + 1}</h3>
+                <div className="detail_head">
+                  <h3>Education-{index + 1}</h3>
+                  <button onClick={() => deleteEducation(educationDetail.id)}>
+                    <RiDeleteBin5Fill />
+                  </button>
+                </div>
                 <EducationDetailComponent
                   educationDetail={educationDetail}
                   updateEducationDetail={handleEducationInput}
@@ -71,7 +108,9 @@ const ApplicantDetails = ({
               </div>
             )
           )}
-          <button onClick={addNewEducation}>+</button>
+          <button className="add_new_section" onClick={addNewEducation}>
+            +
+          </button>
         </div>
       </div>
       <div className="info_box">
@@ -80,7 +119,13 @@ const ApplicantDetails = ({
           {experienceDetails.map(
             (experienceDetail: ExperienceBackground, index: number) => (
               <div key={experienceDetail.id}>
-                <h3>Experience-{index + 1}</h3>
+                <div className="detail_head">
+                  <h3>Experience-{index + 1}</h3>
+                  <button onClick={() => deleteExperience(experienceDetail.id)}>
+                    <RiDeleteBin5Fill />
+                  </button>
+                </div>
+
                 <ExperienceBackgroundComponent
                   experienceDetail={experienceDetail}
                   updateExperienceDetail={handleExperienceInput}
@@ -88,7 +133,9 @@ const ApplicantDetails = ({
               </div>
             )
           )}
-          <button onClick={addNewExperience}>+</button>
+          <button className="add_new_section" onClick={addNewExperience}>
+            +
+          </button>
         </div>
       </div>
     </div>

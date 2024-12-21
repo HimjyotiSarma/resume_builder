@@ -70,3 +70,41 @@
     }
   }
 }
+
+.detail_head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    width: 40px; /* Explicit width for consistent sizing */
+    height: 40px; /* Explicit height */
+    background-color: #bce8f0; /* Maintained */
+    border: none; /* No border */
+    border-radius: 15%; /* Makes the button circular */
+    display: flex; /* Centers the content */
+    justify-content: center; /* Centers the icon horizontally */
+    align-items: center; /* Centers the icon vertically */
+    transition: transform 0.2s ease;
+
+    svg {
+      color: red;
+      background-color: transparent;
+      font-size: 1.25rem;
+    }
+  }
+  button:hover {
+    cursor: pointer;
+    transform: scale(1.15); /* Slight scaling for hover effect */
+    background-color: #a0d4e0;
+  }
+}
+.add_new_section {
+  background-color: #597643;
+  font-size: 1.5rem;
+  margin: 0 0 0 auto;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.15);
+  }
+}
